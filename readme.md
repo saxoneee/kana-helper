@@ -8,7 +8,10 @@ only tested in chrome for windows
 
 ## usage
 
-* use num block and arrow keys
+* focus textarea
+* use num block and arrow keys for typing
+    * example: hold 7 and use arrows to choose char
+* use minus (-) on num block to change between hiragana and katakana
 * https://saxoneee.github.io/kana-helper/dist/
 
 ## dev
@@ -19,6 +22,7 @@ only tested in chrome for windows
 
 ## todo
 
+* katakana: ヵ, ヶ
+* kanji: 々
 * add structure
-* add katakana
 * proper build system
