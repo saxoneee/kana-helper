@@ -32,6 +32,9 @@ module.exports = {
 			},{
 				from: './node_modules/jquery/dist/jquery.min.js',
 				to: './jquery/dist'
+			},{
+				from: './src/data/*.json',
+				to: './data'
 			}
 		]
 		})
