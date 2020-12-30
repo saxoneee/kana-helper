@@ -4,6 +4,8 @@ for those who want to write some hiragana without needing a japanese keyboard
 
 based on android hiragana keyboard
 
+only tested in chrome for windows
+
 ## usage
 
 * use num block and arrow keys
@@ -15,3 +17,8 @@ based on android hiragana keyboard
 * run `npm run dev`
 * open http://localhost:8000/
 
+## todo
+
+* add structure
+* add katakana
+* proper build system
