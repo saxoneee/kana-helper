@@ -33,7 +33,10 @@ module.exports = {
 				from: './node_modules/jquery/dist/jquery.min.js',
 				to: './jquery/dist'
 			},{
-				from: './src/data/*.json',
+				from: './src/data/kana.json',
+				to: './data'
+			},{
+				from: './src/data/keybinding.json',
 				to: './data'
 			}
 		]
