@@ -1,9 +1,10 @@
 var path = require('path'),
-	{ CleanWebpackPlugin } = require('clean-webpack-plugin');
+	{ CleanWebpackPlugin } = require('clean-webpack-plugin'),
 	CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	entry: './src/js/main.js',
+	mode: 'development',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 	},
