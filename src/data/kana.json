@@ -3,122 +3,122 @@
         "r": "A",
         "h": "あ",
         "k": "ア",
-        "daku-h": "a"
+        "daku": "a"
     },
     {
         "r": "I",
         "h": "い",
         "k": "イ",
-        "daku-h": "i"
+        "daku": "i"
     },
     {
         "r": "U",
         "h": "う",
         "k": "ウ",
-        "daku-h": "u"
+        "daku": "u"
     },
     {
         "r": "E",
         "h": "え",
         "k": "エ",
-        "daku-h": "e"
+        "daku": "e"
     },
     {
         "r": "O",
         "h": "お",
         "k": "オ",
-        "daku-h": "o"
+        "daku": "o"
     },
     {
         "r": "Ka",
         "h": "か",
         "k": "カ",
-        "daku-h": "Ga"
+        "daku": "Ga"
     },
     {
         "r": "Ki",
         "h": "き",
         "k": "キ",
-        "daku-h": "Gi"
+        "daku": "Gi"
     },
     {
         "r": "Ku",
         "h": "く",
         "k": "ク",
-        "daku-h": "Gu"
+        "daku": "Gu"
     },
     {
         "r": "Ke",
         "h": "け",
         "k": "ケ",
-        "daku-h": "Ge"
+        "daku": "Ge"
     },
     {
         "r": "Ko",
         "h": "こ",
         "k": "コ",
-        "daku-h": "Go"
+        "daku": "Go"
     },
     {
         "r": "Sa",
         "h": "さ",
         "k": "サ",
-        "daku-h": "Za"
+        "daku": "Za"
     },
     {
         "r": "Shi",
         "h": "し",
         "k": "シ",
-        "daku-h": "s_Ji"
+        "daku": "s_Ji"
     },
     {
         "r": "Su",
         "h": "す",
         "k": "ス",
-        "daku-h": "s_Zu"
+        "daku": "s_Zu"
     },
     {
         "r": "Se",
         "h": "せ",
         "k": "セ",
-        "daku-h": "Ze"
+        "daku": "Ze"
     },
     {
         "r": "So",
         "h": "そ",
         "k": "ソ",
-        "daku-h": "Zo"
+        "daku": "Zo"
     },
     {
         "r": "Ta",
         "h": "た",
         "k": "タ",
-        "daku-h": "Da"
+        "daku": "Da"
     },
     {
         "r": "Chi",
         "h": "ち",
         "k": "チ",
-        "daku-h": "t_Ji"
+        "daku": "t_Ji"
     },
     {
         "r": "Tsu",
         "h": "つ",
         "k": "ツ",
-        "daku-h": "t_Zu",
-        "daku2-h": "tsu"
+        "daku": "t_Zu",
+        "daku2": "tsu"
     },
     {
         "r": "Te",
         "h": "て",
         "k": "テ",
-        "daku-h": "De"
+        "daku": "De"
     },
     {
         "r": "To",
         "h": "と",
         "k": "ト",
-        "daku-h": "Do"
+        "daku": "Do"
     },
     {
         "r": "Na",
@@ -149,36 +149,36 @@
         "r": "Ha",
         "h": "は",
         "k": "ハ",
-        "daku-h": "Ba",
-        "handaku-h": "Pa"
+        "daku": "Ba",
+        "handaku": "Pa"
     },
     {
         "r": "Hi",
         "h": "ひ",
         "k": "ヒ",
-        "daku-h": "Bi",
-        "handaku-h": "Pi"
+        "daku": "Bi",
+        "handaku": "Pi"
     },
     {
         "r": "Fu",
         "h": "ふ",
         "k": "フ",
-        "daku-h": "Bu",
-        "handaku-h": "Pu"
+        "daku": "Bu",
+        "handaku": "Pu"
     },
     {
         "r": "He",
         "h": "へ",
         "k": "ヘ",
-        "daku-h": "Be",
-        "handaku-h": "Pe"
+        "daku": "Be",
+        "handaku": "Pe"
     },
     {
         "r": "Ho",
         "h": "ほ",
         "k": "ホ",
-        "daku-h": "Bo",
-        "handaku-h": "Po"
+        "daku": "Bo",
+        "handaku": "Po"
     },
     {
         "r": "Ma",
@@ -209,19 +209,19 @@
         "r": "Ya",
         "h": "や",
         "k": "ヤ",
-        "daku-h": "ya"
+        "daku": "ya"
     },
     {
         "r": "Yu",
         "h": "ゆ",
         "k": "ユ",
-        "daku-h": "yu"
+        "daku": "yu"
     },
     {
         "r": "Yo",
         "h": "よ",
         "k": "ヨ",
-        "daku-h": "yo"
+        "daku": "yo"
     },
     {
         "r": "Ra",

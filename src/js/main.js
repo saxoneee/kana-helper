@@ -211,7 +211,7 @@
                             
                             for(var _r in kanaDic){
                                 var _k = kanaDic[_r];
-                                var _daku = (charToInsert.r === 'daku2' && _k['daku2-h']) ? 'daku2-h' : 'daku-h';
+                                var _daku = (charToInsert.r === 'daku2' && _k['daku2']) ? 'daku2' : 'daku';
 
                                 if(_k.h === _char && _k[_daku] && kanaDic[_k[_daku]]){
                                     deleteAtCursor(input[0]);
@@ -228,9 +228,9 @@
                             
                             for(var _r in kanaDic){
                                 var _k = kanaDic[_r];
-                                if(_k.h === _char && _k['handaku-h'] && kanaDic[_k['handaku-h']]){
+                                if(_k.h === _char && _k['handaku'] && kanaDic[_k['handaku']]){
                                     deleteAtCursor(input[0]);
-                                    insertAtCursor(input[0], kanaDic[_k['handaku-h']].h);
+                                    insertAtCursor(input[0], kanaDic[_k['handaku']].h);
                                 }
                             }
                         break;
