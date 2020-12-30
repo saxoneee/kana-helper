@@ -8,7 +8,8 @@
     var charToInsert = null,
         kanaGroupKeyMap = {},
         activeKanaKey = null,
-        activeKanaGroup = null;
+        activeKanaGroup = null,
+        activeKanaType = 'h';
 
     $.when($.get('data/kana.json'),$.get('data/keybinding.json')).done(function(pKanaDone, pKeyBindingDone){
         kanaDic = restructDataToKey('r',pKanaDone[0]);
@@ -25,6 +26,7 @@
 
     function generateKeyBoard(){
         var _keyboard = [];
+        kanaContainer.html('');
 
         kanaGroupKeyMap[keybindingDic['input'][0]['keyCode']] = [kanaDic['A'],kanaDic['U'],kanaDic['E'],kanaDic['O'],kanaDic['I']];
         kanaGroupKeyMap[keybindingDic['input'][1]['keyCode']] = [kanaDic['Ka'],kanaDic['Ku'],kanaDic['Ke'],kanaDic['Ko'],kanaDic['Ki']];
@@ -46,7 +48,7 @@
                 _keyboard.push($('<br>'));
             }
 
-            _keyboard.push(generateButton(_kbdi.keyCode,'r','h',kanaGroupKeyMap[_kbdi.keyCode]));
+            _keyboard.push(generateButton(_kbdi.keyCode,'r',activeKanaType,kanaGroupKeyMap[_kbdi.keyCode]));
         }
 
         kanaContainer.append(_keyboard);
@@ -87,7 +89,8 @@
 
     function addListeners(){
         var _inputHold = false,
-            _controlHold = false;
+            _controlHold = false,
+            _configHold = false;
 
         input.on('keydown', function(ev){
             var _pressedKeyCode = ev.which;
@@ -109,6 +112,10 @@
                 }
                 return false;
             }
+            if(pressedKeyIs('config',_pressedKeyCode)){
+                _configHold = _pressedKeyCode;
+                return false;
+            }
         });
 
         input.on('keyup', function(ev){
@@ -122,6 +129,11 @@
                 stopUseButton('control', _pressedKeyCode);
                 _controlHold = false;
             }
+            if(_configHold === _pressedKeyCode){
+                stopUseButton('config', _pressedKeyCode);
+                _configHold = false;
+            }
+
         });
     }
 
@@ -158,6 +170,7 @@
                 var _pressedKey = keybindingDic.control.filter(function(pKeyBinding) {
                     return (parseInt(pKeyBinding.keyCode) === pKeyCode) ? true : false
                 });
+
                 if(_pressedKey.length > 0){
                     _pressedKey = _pressedKey[0];
                     var _highlight = false;
@@ -213,9 +226,9 @@
                                 var _k = kanaDic[_r];
                                 var _daku = (charToInsert.r === 'daku2' && _k['daku2']) ? 'daku2' : 'daku';
 
-                                if(_k.h === _char && _k[_daku] && kanaDic[_k[_daku]]){
+                                if(_k[activeKanaType] === _char && _k[_daku] && kanaDic[_k[_daku]]){
                                     deleteAtCursor(input[0]);
-                                    insertAtCursor(input[0], kanaDic[_k[_daku]].h);
+                                    insertAtCursor(input[0], kanaDic[_k[_daku]][activeKanaType]);
                                 }
                             }
                         break;
@@ -228,39 +241,57 @@
                             
                             for(var _r in kanaDic){
                                 var _k = kanaDic[_r];
-                                if(_k.h === _char && _k['handaku'] && kanaDic[_k['handaku']]){
+                                if(_k[activeKanaType] === _char && _k['handaku'] && kanaDic[_k['handaku']]){
                                     deleteAtCursor(input[0]);
-                                    insertAtCursor(input[0], kanaDic[_k['handaku']].h);
+                                    insertAtCursor(input[0], kanaDic[_k['handaku']][activeKanaType]);
                                 }
                             }
                         break;
                         default:
-                            insertAtCursor(input[0], charToInsert.h);
+                            insertAtCursor(input[0], charToInsert[activeKanaType]);
                     }
                     
                     charToInsert = null;
                     activeKanaKey = null;
                     activeKanaGroup = null;
+                }else{
+
                 }
             break;
             case 'control': 
-            if(!activeKanaGroup){
-                break;
-            }
-            var _pressedKey = keybindingDic.control.filter(function(pKeyBinding) {
-                return (parseInt(pKeyBinding.keyCode) === pKeyCode) ? true : false
-            });
-            if(_pressedKey.length > 0){
-                _pressedKey = _pressedKey[0];
-                if(['top', 'right', 'bottom', 'left'].indexOf(_pressedKey.keyValue) !== -1){
-                    charToInsert = activeKanaGroup[0];
+                var _pressedKey = keybindingDic.control.filter(function(pKeyBinding) {
+                    return (parseInt(pKeyBinding.keyCode) === pKeyCode) ? true : false
+                });
+                if(_pressedKey.length > 0){
+                    _pressedKey = _pressedKey[0];
+                    
+                    if(['top', 'right', 'bottom', 'left'].indexOf(_pressedKey.keyValue) !== -1){
+                        if(!activeKanaGroup){
+                            break;
+                        }
+                        charToInsert = activeKanaGroup[0];
 
-                    var _button = $('.kana-key').find('.main[data-keycode="'+activeKanaKey+'"]'),
-                        _buttonGroup = _button.parent();
-                    _buttonGroup.find('.in-use').removeClass('in-use');
-                    _button.addClass('in-use');
+                        var _button = $('.kana-key').find('.main[data-keycode="'+activeKanaKey+'"]'),
+                            _buttonGroup = _button.parent();
+                        _buttonGroup.find('.in-use').removeClass('in-use');
+                        _button.addClass('in-use');
+                    }
                 }
-            }
+            break;
+            case 'config': 
+                var _pressedKey = keybindingDic.config.filter(function(pKeyBinding) {
+                    return (parseInt(pKeyBinding.keyCode) === pKeyCode) ? true : false
+                });
+                if(_pressedKey.length > 0){
+                    _pressedKey = _pressedKey[0];
+
+                    switch(_pressedKey.keyValue){
+                        case 'change_kana': 
+                            activeKanaType = (activeKanaType === 'h') ? 'k' : 'h';
+                            generateKeyBoard();
+                        break;
+                    }
+                }
             break;
         }
     }
