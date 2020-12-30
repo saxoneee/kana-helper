@@ -1,0 +1,22 @@
+{
+  "name": "kana-helper",
+  "version": "0.0.1",
+  "description": "for those who want to write some hiragana without needing a japanese keyboard",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack serve --config webpack.dev.js"
+  },
+  "bin": {
+    "webpack": "./node_modules/.bin/webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.0",
+    "webpack-dev-server": "^3.11.1"
+  }
+}
