@@ -7,6 +7,7 @@ based on android hiragana keyboard
 ## usage
 
 * use num block and arrow keys
+* https://saxoneee.github.io/kana-helper/dist/
 
 ## dev
 
