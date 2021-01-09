@@ -39,7 +39,7 @@
         kanaGroupKeyMap[keybindingDic['input'][6]['keyCode']] = [kanaDic['Ma'],kanaDic['Mu'],kanaDic['Me'],kanaDic['Mo'],kanaDic['Mi']];
         kanaGroupKeyMap[keybindingDic['input'][7]['keyCode']] = [kanaDic['Ya'],kanaDic['Yu'],kanaDic['klammer_zu'],kanaDic['Yo'],kanaDic['klammer_auf']];
         kanaGroupKeyMap[keybindingDic['input'][8]['keyCode']] = [kanaDic['Ra'],kanaDic['Ru'],kanaDic['Re'],kanaDic['Ro'],kanaDic['Ri']];
-        kanaGroupKeyMap[keybindingDic['input'][9]['keyCode']] = [kanaDic['daku2'],kanaDic['handaku'],kanaDic['punkt'],kanaDic['komma'],kanaDic['daku']];
+        kanaGroupKeyMap[keybindingDic['input'][9]['keyCode']] = [kanaDic['daku2'],kanaDic['handaku'],kanaDic['dot'],kanaDic['comma'],kanaDic['daku']];
         kanaGroupKeyMap[keybindingDic['input'][10]['keyCode']] = [kanaDic['Wa'],kanaDic['N'],kanaDic['choonpu'],kanaDic['namidasshu'],kanaDic['Wo']];
 
         // order as defined in keybinding-list
