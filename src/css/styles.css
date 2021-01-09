@@ -1,8 +1,10 @@
+body{
+    white-space: nowrap;
+}
 #input{
     font-size:30px;
     height:400px;
     width:400px;
-    margin-right:100px;
 }
 #kana{
     display:inline-block;
