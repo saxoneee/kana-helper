@@ -22,6 +22,8 @@
         generateKeyBoard();
 
         addListeners();
+
+        input.trigger('focus');
     }
 
     function generateKeyBoard(){
@@ -37,7 +39,7 @@
         kanaGroupKeyMap[keybindingDic['input'][6]['keyCode']] = [kanaDic['Ma'],kanaDic['Mu'],kanaDic['Me'],kanaDic['Mo'],kanaDic['Mi']];
         kanaGroupKeyMap[keybindingDic['input'][7]['keyCode']] = [kanaDic['Ya'],kanaDic['Yu'],kanaDic['klammer_zu'],kanaDic['Yo'],kanaDic['klammer_auf']];
         kanaGroupKeyMap[keybindingDic['input'][8]['keyCode']] = [kanaDic['Ra'],kanaDic['Ru'],kanaDic['Re'],kanaDic['Ro'],kanaDic['Ri']];
-        kanaGroupKeyMap[keybindingDic['input'][9]['keyCode']] = [kanaDic['daku2'],kanaDic['handaku'],kanaDic['punkt'],kanaDic['komma'],kanaDic['daku']];
+        kanaGroupKeyMap[keybindingDic['input'][9]['keyCode']] = [kanaDic['daku2'],kanaDic['handaku'],kanaDic['dot'],kanaDic['comma'],kanaDic['daku']];
         kanaGroupKeyMap[keybindingDic['input'][10]['keyCode']] = [kanaDic['Wa'],kanaDic['N'],kanaDic['choonpu'],kanaDic['namidasshu'],kanaDic['Wo']];
 
         // order as defined in keybinding-list
@@ -69,11 +71,21 @@
             if(!_char){
                 continue;
             }
-            var _button = $('<div class="'+_poskanaDic[_i]+'" data-pos="'+_i+'" data-keycode="'+pKeyCode+'" data-data-key="'+_char[pDataKey]+'">'+_char[pDataValue]+'</div>');
+            var _button = $('<div class="'+_poskanaDic[_i]+'" data-pos="'+_i+'" data-keycode="'+pKeyCode+'" data-data-key="'+_char[pDataKey]+'" title="'+_char[pDataKey]+'">'+_char[pDataValue]+'</div>');
+            _button.on('click', function(){onKanaClick(this); return false;});
             _container.append(_button);
         }
             
         return _container;
+    }
+
+    function onKanaClick(pKey){
+        insertKanaByDataKey($(pKey).data('data-key'));
+        input.trigger('focus');
+    }
+
+    function insertKanaByDataKey(pDataKey){
+        insert(kanaDic[pDataKey]);
     }
 
     function restructDataToKey(pKey, pData){
@@ -213,43 +225,7 @@
                 _buttonGroup.find('.in-use').removeClass('in-use');
 
                 if(charToInsert){
-                    switch(charToInsert.r){
-                        case 'daku': 
-                        case 'daku2': 
-                            var _cursorPos = input.prop('selectionStart');
-                            if(_cursorPos <= 0){
-                                break;
-                            }
-                            var _char = input.val()[_cursorPos-1];
-                            
-                            for(var _r in kanaDic){
-                                var _k = kanaDic[_r];
-                                var _daku = (charToInsert.r === 'daku2' && _k['daku2']) ? 'daku2' : 'daku';
-
-                                if(_k[activeKanaType] === _char && _k[_daku] && kanaDic[_k[_daku]]){
-                                    deleteAtCursor(input[0]);
-                                    insertAtCursor(input[0], kanaDic[_k[_daku]][activeKanaType]);
-                                }
-                            }
-                        break;
-                        case 'handaku': 
-                            var _cursorPos = input.prop('selectionStart');
-                            if(_cursorPos <= 0){
-                                break;
-                            }
-                            var _char = input.val()[_cursorPos-1];
-                            
-                            for(var _r in kanaDic){
-                                var _k = kanaDic[_r];
-                                if(_k[activeKanaType] === _char && _k['handaku'] && kanaDic[_k['handaku']]){
-                                    deleteAtCursor(input[0]);
-                                    insertAtCursor(input[0], kanaDic[_k['handaku']][activeKanaType]);
-                                }
-                            }
-                        break;
-                        default:
-                            insertAtCursor(input[0], charToInsert[activeKanaType]);
-                    }
+                    insert(charToInsert);
                     
                     charToInsert = null;
                     activeKanaKey = null;
@@ -293,6 +269,46 @@
                     }
                 }
             break;
+        }
+    }
+
+    function insert(pInsertChar){
+        switch(pInsertChar.r){
+            case 'daku': 
+            case 'daku2': 
+                var _cursorPos = input.prop('selectionStart');
+                if(_cursorPos <= 0){
+                    break;
+                }
+                var _char = input.val()[_cursorPos-1];
+                
+                for(var _r in kanaDic){
+                    var _k = kanaDic[_r];
+                    var _daku = (pInsertChar.r === 'daku2' && _k['daku2']) ? 'daku2' : 'daku';
+
+                    if(_k[activeKanaType] === _char && _k[_daku] && kanaDic[_k[_daku]]){
+                        deleteAtCursor(input[0]);
+                        insertAtCursor(input[0], kanaDic[_k[_daku]][activeKanaType]);
+                    }
+                }
+            break;
+            case 'handaku': 
+                var _cursorPos = input.prop('selectionStart');
+                if(_cursorPos <= 0){
+                    break;
+                }
+                var _char = input.val()[_cursorPos-1];
+                
+                for(var _r in kanaDic){
+                    var _k = kanaDic[_r];
+                    if(_k[activeKanaType] === _char && _k['handaku'] && kanaDic[_k['handaku']]){
+                        deleteAtCursor(input[0]);
+                        insertAtCursor(input[0], kanaDic[_k['handaku']][activeKanaType]);
+                    }
+                }
+            break;
+            default:
+                insertAtCursor(input[0], pInsertChar[activeKanaType]);
         }
     }
 
