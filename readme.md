@@ -1,6 +1,6 @@
 # kana helper
 
-for those who want to write some hiragana/katakana without needing a japanese keyboard
+for those who want to write some hiragana/katakana without a japanese keyboard
 
 based on android hiragana keyboard
 

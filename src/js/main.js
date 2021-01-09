@@ -22,6 +22,8 @@
         generateKeyBoard();
 
         addListeners();
+
+        input.trigger('focus');
     }
 
     function generateKeyBoard(){
