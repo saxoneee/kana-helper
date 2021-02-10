@@ -1,11 +1,20 @@
 body{
     white-space: nowrap;
+    margin:0;
 }
 #input{
     font-size:30px;
     height:400px;
     width:400px;
 }
+#kana-wrapper{
+    display:inline-block;
+    vertical-align: top;
+}
+#kana-wrapper hr{
+    visibility: hidden;
+}
+
 #kana{
     display:inline-block;
     vertical-align:top;
@@ -16,7 +25,8 @@ body{
     box-shadow:0 0 2px #000 inset;
 }
 
-.kana-key{
+.kana-key,
+.kana-type-key{
     display:inline-block;
     position:relative;
     background: #eee;
@@ -25,7 +35,8 @@ body{
     margin-right:5px;
     margin-bottom:5px;
 }
-.kana-key:hover{
+.kana-key:hover,
+.kana-type-key:hover{
     background:#fff;
 }
 
@@ -38,7 +49,8 @@ body{
 }
 
 
-.kana-key.in-use{
+.kana-key.in-use,
+.kana-type-key.in-use{
     background:#fff;
 }
 
@@ -75,4 +87,31 @@ body{
 .kana-key div:hover{
     opacity: 1;
     font-weight:bold
+}
+
+.kana-type-key{
+    font-size:15px;
+    cursor:pointer;
+}
+.kana-type-key.in-use{
+    text-decoration: underline;
+}
+
+@media (max-width: 660px) {
+    body{
+        padding:5px;
+    }
+    #main{
+        display:flex;
+        flex-direction: column;
+    }
+    #input{
+        width:auto;
+        display:block;
+        margin-bottom:10px;
+    }
+
+    #kana-wrapper{
+        margin:0 auto;
+    }
 }

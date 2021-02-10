@@ -1,5 +1,6 @@
 (function(){
     var input = $('#input'),
+        kanaWrapper = $('#kana');
         kanaContainer = $('#kana');
 
     var kanaDic = null,
@@ -19,14 +20,14 @@
     })
 
     function init(){
-        generateKeyBoard();
+        generateKeyboard();
 
         addListeners();
 
         input.trigger('focus');
     }
 
-    function generateKeyBoard(){
+    function generateKeyboard(){
         var _keyboard = [];
         kanaContainer.html('');
 
@@ -53,7 +54,14 @@
             _keyboard.push(generateButton(_kbdi.keyCode,'r',activeKanaType,kanaGroupKeyMap[_kbdi.keyCode]));
         }
 
+        _keyboard.push($('<hr>'));
+
+        _keyboard.push($('<div class="kana-type-key '+((activeKanaType === 'h') ? 'in-use' : '')+'" data-kana-type="h">Hiragana</div>'));
+        _keyboard.push($('<div class="kana-type-key '+((activeKanaType === 'k') ? 'in-use' : '')+'" data-kana-type="k">Katakana</div>'));
+        
         kanaContainer.append(_keyboard);
+
+        $('.kana-type-key').on('click', function(){onKanaTypeClick(this); return false;});
     }
 
     function generateButton(pKeyCode, pDataKey, pDataValue, pCharacters){
@@ -81,6 +89,13 @@
 
     function onKanaClick(pKey){
         insertKanaByDataKey($(pKey).data('data-key'));
+        input.trigger('focus');
+    }
+
+    function onKanaTypeClick(pKey){
+        activeKanaType = $(pKey).data('kana-type');
+        generateKeyboard();
+
         input.trigger('focus');
     }
 
@@ -145,7 +160,6 @@
                 stopUseButton('config', _pressedKeyCode);
                 _configHold = false;
             }
-
         });
     }
 
@@ -264,7 +278,10 @@
                     switch(_pressedKey.keyValue){
                         case 'change_kana': 
                             activeKanaType = (activeKanaType === 'h') ? 'k' : 'h';
-                            generateKeyBoard();
+                            generateKeyboard();
+
+                            $('.kana-type-key').removeClass('in-use');
+                            $('.kana-type-key[data-kana-type="'+activeKanaType+'"]').addClass('in-use');
                         break;
                     }
                 }
