@@ -10,7 +10,8 @@
         kanaGroupKeyMap = {},
         activeKanaKey = null,
         activeKanaGroup = null,
-        activeKanaType = 'h';
+        activeKanaType = 'h',
+        enableFocusInput = !matchMedia('(hover: none)').matches; // because mobile phone keyboards will fuck up the usability
 
     $.when($.get('data/kana.json'),$.get('data/keybinding.json')).done(function(pKanaDone, pKeyBindingDone){
         kanaDic = restructDataToKey('r',pKanaDone[0]);
@@ -24,7 +25,9 @@
 
         addListeners();
 
-        input.trigger('focus');
+        if(enableFocusInput){
+            input.trigger('focus');
+        }
     }
 
     function generateKeyboard(){
@@ -89,14 +92,17 @@
 
     function onKanaClick(pKey){
         insertKanaByDataKey($(pKey).data('data-key'));
-        input.trigger('focus');
+        if(enableFocusInput){
+            input.trigger('focus');
+        }
     }
 
     function onKanaTypeClick(pKey){
         activeKanaType = $(pKey).data('kana-type');
         generateKeyboard();
-
-        input.trigger('focus');
+        if(enableFocusInput){
+            input.trigger('focus');
+        }
     }
 
     function insertKanaByDataKey(pDataKey){
