@@ -57,10 +57,12 @@
             _keyboard.push(generateButton(_kbdi.keyCode,'r',activeKanaType,kanaGroupKeyMap[_kbdi.keyCode]));
         }
 
-        _keyboard.push($('<hr>'));
+        // _keyboard.push($('<hr>'));
+        var _kanaTypeWrapper = $('<div class="kana-type-key-wrapper"></div>')
+        _keyboard.push(_kanaTypeWrapper);
 
-        _keyboard.push($('<div class="kana-type-key '+((activeKanaType === 'h') ? 'in-use' : '')+'" data-kana-type="h">Hiragana</div>'));
-        _keyboard.push($('<div class="kana-type-key '+((activeKanaType === 'k') ? 'in-use' : '')+'" data-kana-type="k">Katakana</div>'));
+        _kanaTypeWrapper.append($('<div class="kana-type-key '+((activeKanaType === 'h') ? 'in-use' : '')+'" data-kana-type="h">Hiragana</div>'));
+        _kanaTypeWrapper.append($('<div class="kana-type-key '+((activeKanaType === 'k') ? 'in-use' : '')+'" data-kana-type="k">Katakana</div>'));
         
         kanaContainer.append(_keyboard);
 
