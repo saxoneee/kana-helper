@@ -1,4 +1,6 @@
 (function(){
+    var debugScreen = false;
+
     var input = $('#input'),
         kanaWrapper = $('#kana');
         kanaContainer = $('#kana');
@@ -28,6 +30,10 @@
 
         if(enableFocusInput){
             input.trigger('focus');
+        }
+
+        if(!enableFocusInput && debugScreen){
+            $('#debug').show();
         }
     }
 
@@ -173,6 +179,8 @@
 
         input.on('focus click input keydown keyup', function(){
             lastTextCursorPos = this.selectionStart;
+
+            debug();
         });
     }
 
@@ -303,14 +311,16 @@
     }
 
     function insert(pInsertChar){
+        debug(JSON.stringify(pInsertChar));
         switch(pInsertChar.r){
             case 'daku': 
             case 'daku2': 
-                var _cursorPos = input.prop('selectionStart');
+                var _cursorPos = lastTextCursorPos;
                 if(_cursorPos <= 0){
                     break;
                 }
                 var _char = input.val()[_cursorPos-1];
+                debug(_char);
                 
                 for(var _r in kanaDic){
                     var _k = kanaDic[_r];
@@ -323,7 +333,7 @@
                 }
             break;
             case 'handaku': 
-                var _cursorPos = input.prop('selectionStart');
+                var _cursorPos = lastTextCursorPos;
                 if(_cursorPos <= 0){
                     break;
                 }
@@ -362,6 +372,8 @@
         } else {
             myField.value += myValue;
         }
+
+        debug();
     }
 
     function deleteAtCursor(myField) {
@@ -373,6 +385,29 @@
             myField.selectionStart = startPos;
             myField.selectionEnd = startPos;
             lastTextCursorPos--;
+        }
+
+        debug();
+    }
+
+
+    var _debugLines = [],
+        _maxDebugLines = 20;
+    function debug(pMsg){
+        if(debugScreen){
+            if(pMsg){
+                _debugLines.push(pMsg);
+            }else{
+                _debugLines.push('lastTextCursorPos: ' + lastTextCursorPos);
+            }
+
+            $('#debug').html(_debugLines.join('<hr>'));
+
+            if(_debugLines.length > _maxDebugLines){
+                _debugLines.splice(0, Math.abs(_maxDebugLines - _debugLines.length));
+                console.log(_debugLines.length);
+            }
+            console.log(_debugLines);
         }
     }
 })();

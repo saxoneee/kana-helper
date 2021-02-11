@@ -97,7 +97,33 @@ body{
     text-decoration: underline;
 }
 
+#debug{
+    display:none;
+}
+
 @media (max-width: 660px) {
+    #debug{
+        word-wrap: break-word;
+        white-space: normal;
+        max-width:33%;
+        font-size:8px;
+        position:absolute;
+        z-index:999;
+        right:0;
+        top:0;
+        text-align:right;
+        background:blue;
+        color:#fff;
+        padding:2px;
+        font-family:'Courier New', Courier, monospace;
+    }
+    #debug hr{
+        margin:0;
+        border:0;
+        height:0;
+        border-top:1px solid white;
+    }
+
     html{
         height:100%;
     }
