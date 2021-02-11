@@ -11,6 +11,7 @@
         activeKanaKey = null,
         activeKanaGroup = null,
         activeKanaType = 'h',
+        lastTextCursorPos = null,
         enableFocusInput = !matchMedia('(hover: none)').matches; // because mobile phone keyboards will fuck up the usability
 
     $.when($.get('data/kana.json'),$.get('data/keybinding.json')).done(function(pKanaDone, pKeyBindingDone){
@@ -168,6 +169,10 @@
                 stopUseButton('config', _pressedKeyCode);
                 _configHold = false;
             }
+        });
+
+        input.on('focus click input keydown keyup', function(){
+            lastTextCursorPos = this.selectionStart;
         });
     }
 
@@ -346,26 +351,28 @@
         }
         //MOZILLA and others
         else if (myField.selectionStart || myField.selectionStart == '0') {
-            var startPos = myField.selectionStart;
-            var endPos = myField.selectionEnd;
+            var startPos = lastTextCursorPos;
+            var endPos = lastTextCursorPos;
             myField.value = myField.value.substring(0, startPos)
                 + myValue
                 + myField.value.substring(endPos, myField.value.length);
             myField.selectionStart = startPos + myValue.length;
             myField.selectionEnd = startPos + myValue.length;
+            lastTextCursorPos++;
         } else {
             myField.value += myValue;
         }
     }
 
     function deleteAtCursor(myField) {
-        if (myField.selectionStart > '0') {
-            var startPos = myField.selectionStart - 1;
-            var endPos = myField.selectionEnd;
+        if (lastTextCursorPos > '0') {
+            var startPos = lastTextCursorPos - 1;
+            var endPos = lastTextCursorPos;
             myField.value = myField.value.substring(0, startPos)
                 + myField.value.substring(endPos, myField.value.length);
             myField.selectionStart = startPos;
             myField.selectionEnd = startPos;
+            lastTextCursorPos--;
         }
     }
 })();
