@@ -9,16 +9,6 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist'),
 	},
 
-	devServer: {
-		open: false,
-		contentBase: [
-			path.join(__dirname, 'src'),
-			path.join(__dirname, 'node_modules'),
-		],
-		port: 8000,
-		// host: '0.0.0.0' // use this with your local ip-address for debugging on mobile
-	},
-
 	plugins: [
 		new CleanWebpackPlugin(),
 		new CopyWebpackPlugin({
