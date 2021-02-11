@@ -306,7 +306,7 @@
         switch(pInsertChar.r){
             case 'daku': 
             case 'daku2': 
-                var _cursorPos = input.prop('selectionStart');
+                var _cursorPos = lastTextCursorPos;
                 if(_cursorPos <= 0){
                     break;
                 }
@@ -323,7 +323,7 @@
                 }
             break;
             case 'handaku': 
-                var _cursorPos = input.prop('selectionStart');
+                var _cursorPos = lastTextCursorPos;
                 if(_cursorPos <= 0){
                     break;
                 }
