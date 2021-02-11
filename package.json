@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.dev.js"
+    "build": "webpack --config webpack.build.js"
   },
   "bin": {
     "webpack": "./node_modules/.bin/webpack"
