@@ -1,72 +1,72 @@
 {
-    "input": [
-        {
-        "keyCode": "103",
-        "keyValue": "7"
-        },
-        {
-        "keyCode": "104",
-        "keyValue": "8"
-        },
-        {
-        "keyCode": "105",
-        "keyValue": "9"
-        },
-        {
-        "keyCode": "100",
-        "keyValue": "4"
-        },
-        {
-        "keyCode": "101",
-        "keyValue": "5"
-        },
-        {
-        "keyCode": "102",
-        "keyValue": "6"
-        },
-        {
-        "keyCode": "97",
-        "keyValue": "1"
-        },
-        {
-        "keyCode": "98",
-        "keyValue": "2"
-        },
-        {
-        "keyCode": "99",
-        "keyValue": "3"
-        },
-        {
-        "keyCode": "96",
-        "keyValue": "0"
-        },
-        {
-        "keyCode": "110",
-        "keyValue": ","
-        }
-    ],
-    "control": [
-        {
-        "keyCode": "38",
-        "keyValue": "top"
-        },
-        {
-        "keyCode": "39",
-        "keyValue": "right"
-        },
-        {
-        "keyCode": "40",
-        "keyValue": "bottom"
-        },
-        {
-        "keyCode": "37",
-        "keyValue": "left"
-        }
-    ],
-    "config": [
-        {
-        "keyCode": "109",
-        "keyValue": "change_kana"
-        }
-    ]
+	"input": [
+		{
+			"keyCode": "103",
+			"keyValue": "7"
+		},
+		{
+			"keyCode": "104",
+			"keyValue": "8"
+		},
+		{
+			"keyCode": "105",
+			"keyValue": "9"
+		},
+		{
+			"keyCode": "100",
+			"keyValue": "4"
+		},
+		{
+			"keyCode": "101",
+			"keyValue": "5"
+		},
+		{
+			"keyCode": "102",
+			"keyValue": "6"
+		},
+		{
+			"keyCode": "97",
+			"keyValue": "1"
+		},
+		{
+			"keyCode": "98",
+			"keyValue": "2"
+		},
+		{
+			"keyCode": "99",
+			"keyValue": "3"
+		},
+		{
+			"keyCode": "96",
+			"keyValue": "0"
+		},
+		{
+			"keyCode": "110",
+			"keyValue": ","
+		}
+	],
+	"control": [
+		{
+			"keyCode": "38",
+			"keyValue": "top"
+		},
+		{
+			"keyCode": "39",
+			"keyValue": "right"
+		},
+		{
+			"keyCode": "40",
+			"keyValue": "bottom"
+		},
+		{
+			"keyCode": "37",
+			"keyValue": "left"
+		}
+	],
+	"config": [
+		{
+			"keyCode": "109",
+			"keyValue": "change_kana"
+		}
+	]
 }
