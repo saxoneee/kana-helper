@@ -179,8 +179,6 @@
 
         input.on('focus click input keydown keyup', function(){
             lastTextCursorPos = this.selectionStart;
-
-            debug();
         });
     }
 
@@ -311,7 +309,6 @@
     }
 
     function insert(pInsertChar){
-        debug(JSON.stringify(pInsertChar));
         switch(pInsertChar.r){
             case 'daku': 
             case 'daku2': 
@@ -320,7 +317,6 @@
                     break;
                 }
                 var _char = input.val()[_cursorPos-1];
-                debug(_char);
                 
                 for(var _r in kanaDic){
                     var _k = kanaDic[_r];
@@ -372,8 +368,6 @@
         } else {
             myField.value += myValue;
         }
-
-        debug();
     }
 
     function deleteAtCursor(myField) {
@@ -386,8 +380,6 @@
             myField.selectionEnd = startPos;
             lastTextCursorPos--;
         }
-
-        debug();
     }
 
 
@@ -405,8 +397,8 @@
 
             if(_debugLines.length > _maxDebugLines){
                 _debugLines.splice(0, Math.abs(_maxDebugLines - _debugLines.length));
-                console.log(_debugLines.length);
             }
+
             console.log(_debugLines);
         }
     }
