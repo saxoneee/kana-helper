@@ -186,7 +186,7 @@ body{
         margin-bottom:1%;
         text-align:center;
     }
-   
+
     .kana-key:before{
         content: ' ';
         font-size:0;
@@ -217,7 +217,7 @@ body{
     .kana-key .main{
         display:inline-block;
         vertical-align: middle;
-        
+
     }
     .kana-key .left,
     .kana-key .right{

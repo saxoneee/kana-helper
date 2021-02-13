@@ -70,7 +70,7 @@
 
         _kanaTypeWrapper.append($('<div class="kana-type-key '+((activeKanaType === 'h') ? 'in-use' : '')+'" data-kana-type="h">Hiragana</div>'));
         _kanaTypeWrapper.append($('<div class="kana-type-key '+((activeKanaType === 'k') ? 'in-use' : '')+'" data-kana-type="k">Katakana</div>'));
-        
+
         kanaContainer.append(_keyboard);
 
         $('.kana-type-key').on('click', function(){onKanaTypeClick(this); return false;});
@@ -95,7 +95,7 @@
             _button.on('click', function(){onKanaClick(this); return false;});
             _container.append(_button);
         }
-            
+
         return _container;
     }
 
@@ -162,7 +162,7 @@
 
         input.on('keyup', function(ev){
             var _pressedKeyCode = ev.which;
-            
+
             if(_inputHold === _pressedKeyCode){
                 stopUseButton('input', _pressedKeyCode);
                 _inputHold = false;
@@ -184,7 +184,7 @@
 
     function pressedKeyIs(pType, pKeyCode){
         var _list = keybindingDic[pType];
-        
+
         if(_list){
             for(var _i = 0; _i < _list.length; _i++){
                 var _item = _list[_i];
@@ -199,7 +199,7 @@
 
     function startUseButton(pType, pKeyCode){
         switch(pType){
-            case 'input': 
+            case 'input':
                 activeKanaGroup = kanaGroupKeyMap[pKeyCode];
                 activeKanaKey = pKeyCode;
                 charToInsert = activeKanaGroup[0];
@@ -208,10 +208,10 @@
 
                 _buttonGroup.addClass('in-use');
                 _main.addClass('in-use');
-                
+
             break;
 
-            case 'control': 
+            case 'control':
                 var _pressedKey = keybindingDic.control.filter(function(pKeyBinding) {
                     return (parseInt(pKeyBinding.keyCode) === pKeyCode) ? true : false
                 });
@@ -220,19 +220,19 @@
                     _pressedKey = _pressedKey[0];
                     var _highlight = false;
                     switch(_pressedKey.keyValue){
-                        case 'top': 
+                        case 'top':
                             charToInsert = activeKanaGroup[1];
                             _highlight = true;
                             break;
-                        case 'right': 
+                        case 'right':
                             charToInsert = activeKanaGroup[2];
                             _highlight = true;
                             break;
-                        case 'bottom': 
+                        case 'bottom':
                             charToInsert = activeKanaGroup[3];
                             _highlight = true;
                             break;
-                        case 'left': 
+                        case 'left':
                             charToInsert = activeKanaGroup[4];
                             _highlight = true;
                         break;
@@ -245,21 +245,21 @@
                         _button.addClass('in-use');
                     }
                 }
-                
+
             break;
         }
     }
 
     function stopUseButton(pType, pKeyCode){
         switch(pType){
-            case 'input': 
+            case 'input':
                 var _buttonGroup = $('.kana-key').find('[data-keycode="'+pKeyCode+'"]').parent(); // wtf, TODO
                 _buttonGroup.removeClass('in-use');
                 _buttonGroup.find('.in-use').removeClass('in-use');
 
                 if(charToInsert){
                     insert(charToInsert);
-                    
+
                     charToInsert = null;
                     activeKanaKey = null;
                     activeKanaGroup = null;
@@ -267,13 +267,13 @@
 
                 }
             break;
-            case 'control': 
+            case 'control':
                 var _pressedKey = keybindingDic.control.filter(function(pKeyBinding) {
                     return (parseInt(pKeyBinding.keyCode) === pKeyCode) ? true : false
                 });
                 if(_pressedKey.length > 0){
                     _pressedKey = _pressedKey[0];
-                    
+
                     if(['top', 'right', 'bottom', 'left'].indexOf(_pressedKey.keyValue) !== -1){
                         if(!activeKanaGroup){
                             break;
@@ -287,7 +287,7 @@
                     }
                 }
             break;
-            case 'config': 
+            case 'config':
                 var _pressedKey = keybindingDic.config.filter(function(pKeyBinding) {
                     return (parseInt(pKeyBinding.keyCode) === pKeyCode) ? true : false
                 });
@@ -295,7 +295,7 @@
                     _pressedKey = _pressedKey[0];
 
                     switch(_pressedKey.keyValue){
-                        case 'change_kana': 
+                        case 'change_kana':
                             activeKanaType = (activeKanaType === 'h') ? 'k' : 'h';
                             generateKeyboard();
 
@@ -310,14 +310,14 @@
 
     function insert(pInsertChar){
         switch(pInsertChar.r){
-            case 'daku': 
-            case 'daku2': 
+            case 'daku':
+            case 'daku2':
                 var _cursorPos = lastTextCursorPos;
                 if(_cursorPos <= 0){
                     break;
                 }
                 var _char = input.val()[_cursorPos-1];
-                
+
                 for(var _r in kanaDic){
                     var _k = kanaDic[_r];
                     var _daku = (pInsertChar.r === 'daku2' && _k['daku2']) ? 'daku2' : 'daku';
@@ -328,13 +328,13 @@
                     }
                 }
             break;
-            case 'handaku': 
+            case 'handaku':
                 var _cursorPos = lastTextCursorPos;
                 if(_cursorPos <= 0){
                     break;
                 }
                 var _char = input.val()[_cursorPos-1];
-                
+
                 for(var _r in kanaDic){
                     var _k = kanaDic[_r];
                     if(_k[activeKanaType] === _char && _k['handaku'] && kanaDic[_k['handaku']]){
